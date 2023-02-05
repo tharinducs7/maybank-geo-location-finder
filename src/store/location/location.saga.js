@@ -1,5 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-import LocationService from './location.service'
+import { put, takeEvery } from 'redux-saga/effects'
 import {
     addLocationError,
     addLocationSuccess
