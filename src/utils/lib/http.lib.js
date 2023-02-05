@@ -53,8 +53,7 @@ class HttpClient {
   async request() {
     try {
       let url = `${this.url}`;
-
-    // let url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Kandy,%20Sri%20Lanka&key=AIzaSyB1l49cKVDRZPBhwLoiAUiNGlxQGcBGmUs'
+      
       const headers = {
         'Access-Control-Allow-Origin': '*',
         "Content-Type": "application/json",

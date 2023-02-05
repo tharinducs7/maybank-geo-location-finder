@@ -1,25 +1,25 @@
 import {
-  GET_CURRENT_LOCATION_START,
-  GET_CURRENT_LOCATION_SUCCESS,
-  GET_CURRENT_LOCATION_FAILURE,
+  ADD_LOCATION_START,
+  ADD_LOCATION_SUCCESS,
+  ADD_LOCATION_FAILURE,
 } from "./location.constants";
 
 const INITIAL_STATE = {
   isLoading: false,
-  getCurrentLocationData: {},
-  getCurrentLocationError: "",
+  locationData: [],
+  getAddLocationError: "",
 };
 
 export default function locations(state = INITIAL_STATE, { type, payload }) {
   switch (type) {
-    case GET_CURRENT_LOCATION_START:
-      return setGetCurrentLocationStart(state);
+    case ADD_LOCATION_START:
+      return setGetAddLocationStart(state);
 
-    case GET_CURRENT_LOCATION_SUCCESS:
-      return setGetCurrentLocationSuccess(state, payload);
+    case ADD_LOCATION_SUCCESS:
+      return setGetAddLocationSuccess(state, payload);
 
-    case GET_CURRENT_LOCATION_FAILURE:
-      return setGetCurrentLocationError(state, payload);
+    case ADD_LOCATION_FAILURE:
+      return setGetAddLocationError(state, payload);
 
     default:
       return state;
@@ -29,23 +29,21 @@ export default function locations(state = INITIAL_STATE, { type, payload }) {
 /**
  ************** GET Locations **************
  */
-const setGetCurrentLocationStart = (state) => ({
+const setGetAddLocationStart = (state) => ({
   ...state,
-  getCurrentLocationData: {},
   isLoading: true,
-  getCurrentLocationError: null,
+  getAddLocationError: null,
 });
 
-const setGetCurrentLocationSuccess = (state, payload) => ({
+const setGetAddLocationSuccess = (state, payload) => ({
   ...state,
   isLoading: false,
-  getCurrentLocationData: payload,
-  getCurrentLocationError: null,
+  locationData: [payload, ...state.locationData],
+  getAddLocationError: null,
 });
 
-const setGetCurrentLocationError = (state, payload) => ({
+const setGetAddLocationError = (state, payload) => ({
   ...state,
   isLoading: false,
-  getCurrentLocationData: {},
-  getCurrentLocationError: payload,
+  getAddLocationError: payload,
 });

@@ -1,28 +1,26 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import LocationService from './location.service'
 import {
-    getCurrentLocationSuccess,
-    getCurrentLocationError
+    addLocationError,
+    addLocationSuccess
 } from './location.actions'
 
 import {
-    GET_CURRENT_LOCATION_START
+    ADD_LOCATION_START
 } from './location.constants'
 
 
-function* getCurrentLocationStart({type, payload}) {
+function* addLocationStart({type, payload}) {
     try {
-
-        const response = yield LocationService.getCurrentLocation(payload)
-        yield put(getCurrentLocationSuccess(response.data))
-        console.log(response)
+        console.log(payload, "selected")
+        yield put(addLocationSuccess(payload))
     } catch (err) {
-        yield put(getCurrentLocationError(err))
+        yield put(addLocationError(err))
     }
 }
 
 function* locationSaga() {
-    yield takeEvery(GET_CURRENT_LOCATION_START, getCurrentLocationStart)
+    yield takeEvery(ADD_LOCATION_START, addLocationStart)
 }
 
 export default locationSaga
