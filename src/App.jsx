@@ -22,6 +22,8 @@ import MoreInfo from "./components/MoreInfo";
 import { LIBRARIES } from "./constants";
 
 import uuid from "react-uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme();
 
@@ -50,13 +52,21 @@ const APP = () => {
         name: place.name,
         photos: place.photos,
       };
-      console.log(selectedGeoLocation, "se");
       setSelectedPlace(selectedGeoLocation);
       dispatch(addLocationStart(selectedGeoLocation));
       setMoreInfo(true);
       setMapDridWidth(6);
     } else {
-      console.log("Autocomplete is not loaded yet!");
+      toast.error("Autocomplete is not loaded yet!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
@@ -99,6 +109,7 @@ const APP = () => {
           {showMoreInfo && <MoreInfo selectedPlace={selectedPlace} />}
         </Grid>
       </LoadScript>
+      <ToastContainer />
     </ThemeProvider>
   );
 };
