@@ -57,16 +57,6 @@ const APP = () => {
       setMoreInfo(true);
       setMapDridWidth(6);
     } else {
-      // toast.error("Autocomplete is not loaded yet!", {
-      //   position: "top-right",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "colored",
-      // });
       console.log("Autocomplete is not loaded yet!")
     }
   };
