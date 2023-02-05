@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import { GoogleMap, Autocomplete, Marker } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
@@ -10,8 +10,8 @@ const mapContainerStyle = {
 
 // Initialized Map Center
 const center = {
-  lat: 37.7749,
-  lng: -122.4194,
+  lat: 3.139003,
+  lng: 101.686855,
 };
 
 /**
@@ -26,6 +26,17 @@ const MapComponent = ({
   onLoad,
   mapDridWidth,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const resetSearch = () => {
+    setSearchValue("");
+  };
+
+  const placeChange = () => {
+    handlePlaceSelect();
+    resetSearch();
+  };
+
   return (
     <Grid item xs={12} sm={4} md={mapDridWidth}>
       <div style={{ height: "100vh", width: "100%" }}>
@@ -39,12 +50,16 @@ const MapComponent = ({
               position={{ lat: selectedPlace.lat, lng: selectedPlace.lng }}
             />
           )}
-          <Autocomplete onLoad={onLoad} onPlaceChanged={handlePlaceSelect}>
+          <Autocomplete onLoad={onLoad} onPlaceChanged={placeChange}>
             <TextField
               margin="dense"
               required
               id="search"
               name="search"
+              value={searchValue}
+              onChange={(event) => {
+                setSearchValue(event.target.value);
+              }}
               autoFocus
               style={{
                 marginTop: "60px",

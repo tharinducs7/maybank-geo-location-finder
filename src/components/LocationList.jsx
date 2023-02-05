@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeLocationStart } from "../store/location/location.actions";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,7 +11,13 @@ import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-const LocationList = ({ historyData, previousLocation }) => {
+const LocationList = ({ historyData, previousLocation, removeLocation }) => {
+  const history = historyData;
+
+  // const removeLoc = (id) => {
+  //   removeLocation(value.id);
+  //   return history.
+  // };
   return (
     <List
       sx={{
@@ -27,7 +35,7 @@ const LocationList = ({ historyData, previousLocation }) => {
             key={key}
             secondaryAction={
               <IconButton edge="end" aria-label="comments">
-                <DeleteForeverIcon />
+                <DeleteForeverIcon onClick={() => removeLocation(value.id)} />
               </IconButton>
             }
           >

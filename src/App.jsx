@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addLocationStart } from "./store/location/location.actions";
+import {
+  addLocationStart,
+  removeLocationStart,
+} from "./store/location/location.actions";
 
 // import Google Api
 import { LoadScript } from "@react-google-maps/api";
@@ -18,6 +21,8 @@ import MoreInfo from "./components/MoreInfo";
 // goole api libraries
 import { LIBRARIES } from "./constants";
 
+import uuid from "react-uuid";
+
 const theme = createTheme();
 
 const APP = () => {
@@ -25,6 +30,7 @@ const APP = () => {
   const [autocomplete, setAutocomplete] = useState(null);
   const [mapDridWidth, setMapDridWidth] = useState(9);
   const [showMoreInfo, setMoreInfo] = useState(false);
+
   const dispatch = useDispatch();
 
   const { location } = useSelector((state) => state);
@@ -37,13 +43,14 @@ const APP = () => {
       const lng = place.geometry.location.lng();
 
       const selectedGeoLocation = {
+        id: uuid(),
         lat,
         lng,
         address: place.formatted_address,
         name: place.name,
         photos: place.photos,
       };
-
+      console.log(selectedGeoLocation, "se");
       setSelectedPlace(selectedGeoLocation);
       dispatch(addLocationStart(selectedGeoLocation));
       setMoreInfo(true);
@@ -60,6 +67,14 @@ const APP = () => {
 
   const previousLocation = (location) => {
     setSelectedPlace(location);
+    setMoreInfo(true);
+    setMapDridWidth(6);
+  };
+
+  const removeLocation = (id) => {
+    dispatch(removeLocationStart(id));
+    setMoreInfo(false);
+    setMapDridWidth(9);
   };
 
   return (
@@ -73,6 +88,7 @@ const APP = () => {
           <SearchHistory
             historyData={locationData}
             previousLocation={previousLocation}
+            removeLocation={removeLocation}
           />
           <MapComponent
             selectedPlace={selectedPlace}

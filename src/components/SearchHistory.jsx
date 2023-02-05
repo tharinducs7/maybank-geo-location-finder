@@ -9,7 +9,7 @@ import NearMeIcon from "@mui/icons-material/NearMe";
 // Import component
 import LocationList from "./LocationList";
 
-const SearchHistory = ({ historyData, previousLocation }) => {
+const SearchHistory = ({ historyData, previousLocation,removeLocation }) => {
   return (
     <Grid item xs={12} sm={8} md={3} component={Paper} elevation={20} square>
       <Box
@@ -32,6 +32,7 @@ const SearchHistory = ({ historyData, previousLocation }) => {
             <LocationList
               historyData={historyData}
               previousLocation={previousLocation}
+              removeLocation={removeLocation}
             />
           </Grid>
         </Box>
