@@ -1,21 +1,50 @@
-import * as React from "react";
+import React, { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
+import { GoogleMap, Autocomplete, Marker } from "@react-google-maps/api";
+import TextField from "@mui/material/TextField";
 
+const mapContainerStyle = {
+  height: "100%",
+  width: "100%",
+};
 
+const center = {
+  lat: 37.7749,
+  lng: -122.4194,
+};
 
-export default function MapComponent() {
-
+const MapComponent = ({ selectedPlace, handlePlaceSelect, onLoad }) => {
   return (
     <Grid item xs={12} sm={4} md={9}>
       <div style={{ height: "100vh", width: "100%" }}>
-        {/* <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyB1l49cKVDRZPBhwLoiAUiNGlxQGcBGmUs" }}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={13}
+          center={selectedPlace ? selectedPlace : center}
         >
-          <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
-        </GoogleMapReact> */}
+          {selectedPlace && (
+            <Marker
+              position={{ lat: selectedPlace.lat, lng: selectedPlace.lng }}
+            />
+          )}
+          <Autocomplete onLoad={onLoad} onPlaceChanged={handlePlaceSelect}>
+            <TextField
+              margin="dense"
+              required
+              id="search"
+              name="search"
+              autoFocus
+              style={{
+                marginTop: "60px",
+                backgroundColor: "snow",
+                marginLeft: "10px",
+              }}
+            />
+          </Autocomplete>
+        </GoogleMap>
       </div>
     </Grid>
   );
-}
+};
+
+export default MapComponent;
