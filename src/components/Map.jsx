@@ -28,13 +28,9 @@ const MapComponent = ({
 }) => {
   const [searchValue, setSearchValue] = useState("");
 
-  const resetSearch = () => {
-    setSearchValue("");
-  };
-
   const placeChange = () => {
     handlePlaceSelect();
-    resetSearch();
+    setSearchValue("");
   };
 
   return (

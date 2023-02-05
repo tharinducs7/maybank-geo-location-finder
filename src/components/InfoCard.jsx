@@ -5,7 +5,7 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-export default function InfoCard({ selectedPlace }) {
+const InfoCard = ({ selectedPlace }) => {
   return (
     <Card sx={{ width: "100%" }}>
       <CardHeader title={selectedPlace?.name} />
@@ -22,4 +22,6 @@ export default function InfoCard({ selectedPlace }) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default InfoCard;

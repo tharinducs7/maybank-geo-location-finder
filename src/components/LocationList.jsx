@@ -28,7 +28,6 @@ const LocationList = ({ historyData, previousLocation, removeLocation }) => {
             key={key}
             secondaryAction={
               <IconButton edge="end" aria-label="comments">
-                {/* <DeleteForeverIcon onClick={() => removeLocation(value.id)} /> */}
                 <ConfirmationBox removeLocation={removeLocation} id={value.id} />
               </IconButton>
             }

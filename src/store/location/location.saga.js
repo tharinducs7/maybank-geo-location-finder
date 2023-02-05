@@ -17,7 +17,7 @@ function* addLocationStart({ type, payload }) {
     console.log(payload, "selected");
     yield put(addLocationSuccess(payload));
     toast.success(`${payload.name} added to history`, {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -29,7 +29,7 @@ function* addLocationStart({ type, payload }) {
   } catch (err) {
     yield put(addLocationError(err));
     toast.error(err, {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -46,7 +46,7 @@ function* removeLocationStart({ type, payload }) {
     console.log(payload, "id remove");
     yield put(removeLocationSuccess(payload));
     toast.info(`location removed from history`, {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -58,7 +58,7 @@ function* removeLocationStart({ type, payload }) {
   } catch (err) {
     yield put(removeLocationError(err));
     toast.error(err, {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,

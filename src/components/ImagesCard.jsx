@@ -2,7 +2,7 @@ import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
-export default function ImagesCard({ photos, name }) {
+const ImagesCard = ({ photos, name }) => {
   return (
     <ImageList sx={{ height: 550 }} cols={3} rowHeight={164}>
       {photos?.map((item, key) => (
@@ -17,4 +17,6 @@ export default function ImagesCard({ photos, name }) {
       ))}
     </ImageList>
   );
-}
+};
+
+export default ImagesCard;
