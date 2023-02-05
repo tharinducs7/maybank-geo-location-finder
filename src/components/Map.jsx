@@ -13,9 +13,9 @@ const center = {
   lng: -122.4194,
 };
 
-const MapComponent = ({ selectedPlace, handlePlaceSelect, onLoad }) => {
+const MapComponent = ({ selectedPlace, handlePlaceSelect, onLoad, md }) => {
   return (
-    <Grid item xs={12} sm={4} md={9}>
+    <Grid item xs={12} sm={4} md={md}>
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

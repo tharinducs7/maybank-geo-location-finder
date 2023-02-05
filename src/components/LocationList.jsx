@@ -50,7 +50,7 @@ const LocationList = ({ historyData, previousLocation }) => {
               <ListItemIcon>
                 <LocationOnIcon sx={{ color: "#e91e63" }} />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value.address}`} />
+              <ListItemText id={labelId} primary={`${value.name}`} />
             </ListItemButton>
           </ListItem>
         );
