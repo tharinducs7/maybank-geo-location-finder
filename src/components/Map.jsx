@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import { GoogleMap, Autocomplete, Marker } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
@@ -8,14 +8,26 @@ const mapContainerStyle = {
   width: "100%",
 };
 
+// Initialized Map Center
 const center = {
   lat: 37.7749,
   lng: -122.4194,
 };
 
-const MapComponent = ({ selectedPlace, handlePlaceSelect, onLoad, md }) => {
+/**
+ * Map Component
+ *
+ * @returns
+ */
+
+const MapComponent = ({
+  selectedPlace,
+  handlePlaceSelect,
+  onLoad,
+  mapDridWidth,
+}) => {
   return (
-    <Grid item xs={12} sm={4} md={md}>
+    <Grid item xs={12} sm={4} md={mapDridWidth}>
       <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

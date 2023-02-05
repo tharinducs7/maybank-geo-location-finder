@@ -1,20 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addLocationStart } from "./store/location/location.actions";
+
+// import Google Api
 import { LoadScript } from "@react-google-maps/api";
+
+// import MUI
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
+
+// import components
 import MapComponent from "./components/Map";
 import SearchHistory from "./components/SearchHistory";
-import { useSelector, useDispatch } from "react-redux";
-import { addLocationStart } from "./store/location/location.actions";
 import MoreInfo from "./components/MoreInfo";
+
+// goole api libraries
+import { LIBRARIES } from "./constants";
 
 const theme = createTheme();
 
 const APP = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  const [md, setMd] = useState(9);
+  const [mapDridWidth, setMapDridWidth] = useState(9);
   const [showMoreInfo, setMoreInfo] = useState(false);
   const dispatch = useDispatch();
 
@@ -38,7 +47,7 @@ const APP = () => {
       setSelectedPlace(selectedGeoLocation);
       dispatch(addLocationStart(selectedGeoLocation));
       setMoreInfo(true);
-      setMd(6);
+      setMapDridWidth(6);
     } else {
       console.log("Autocomplete is not loaded yet!");
     }
@@ -56,8 +65,8 @@ const APP = () => {
   return (
     <ThemeProvider theme={theme}>
       <LoadScript
-        googleMapsApiKey="AIzaSyB1l49cKVDRZPBhwLoiAUiNGlxQGcBGmUs"
-        libraries={["places"]}
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+        libraries={LIBRARIES}
       >
         <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
@@ -69,7 +78,7 @@ const APP = () => {
             selectedPlace={selectedPlace}
             handlePlaceSelect={handlePlaceSelect}
             onLoad={onLoad}
-            md={md}
+            mapDridWidth={mapDridWidth}
           />
           {showMoreInfo && <MoreInfo selectedPlace={selectedPlace} />}
         </Grid>

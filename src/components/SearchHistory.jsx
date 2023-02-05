@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import NearMeIcon from "@mui/icons-material/NearMe";
+
+// Import component
 import LocationList from "./LocationList";
 
 const SearchHistory = ({ historyData, previousLocation }) => {
@@ -28,7 +29,10 @@ const SearchHistory = ({ historyData, previousLocation }) => {
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
           <Grid container>
-            <LocationList historyData={historyData} previousLocation={previousLocation} />
+            <LocationList
+              historyData={historyData}
+              previousLocation={previousLocation}
+            />
           </Grid>
         </Box>
       </Box>

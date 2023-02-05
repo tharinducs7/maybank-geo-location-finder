@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -9,21 +10,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const LocationList = ({ historyData, previousLocation }) => {
-  const [checked, setChecked] = React.useState([0]);
-
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-
   return (
     <List
       sx={{
@@ -44,9 +30,12 @@ const LocationList = ({ historyData, previousLocation }) => {
                 <DeleteForeverIcon />
               </IconButton>
             }
-            // disablePadding
           >
-            <ListItemButton role={undefined} dense onClick={() => previousLocation(value)}>
+            <ListItemButton
+              role={undefined}
+              dense
+              onClick={() => previousLocation(value)}
+            >
               <ListItemIcon>
                 <LocationOnIcon sx={{ color: "#e91e63" }} />
               </ListItemIcon>
