@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import NearMeIcon from "@mui/icons-material/NearMe";
-import ListComp from "./List";
+import LocationList from "./LocationList";
 
-const SearchHistory = ({ historyData }) => {
+const SearchHistory = ({ historyData, previousLocation }) => {
   return (
     <Grid item xs={12} sm={8} md={3} component={Paper} elevation={20} square>
       <Box
@@ -28,7 +28,7 @@ const SearchHistory = ({ historyData }) => {
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
           <Grid container>
-            <ListComp historyData={historyData} />
+            <LocationList historyData={historyData} previousLocation={previousLocation} />
           </Grid>
         </Box>
       </Box>

@@ -5,10 +5,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-export default function ListComp({ historyData }) {
+const LocationList = ({ historyData, previousLocation }) => {
   const [checked, setChecked] = React.useState([0]);
 
   const handleToggle = (value) => () => {
@@ -46,9 +46,9 @@ export default function ListComp({ historyData }) {
             }
             // disablePadding
           >
-            <ListItemButton role={undefined} dense>
+            <ListItemButton role={undefined} dense onClick={() => previousLocation(value)}>
               <ListItemIcon>
-                <LocationOnIcon sx={{ color: '#e91e63' }} />
+                <LocationOnIcon sx={{ color: "#e91e63" }} />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value.address}`} />
             </ListItemButton>
@@ -57,4 +57,6 @@ export default function ListComp({ historyData }) {
       })}
     </List>
   );
-}
+};
+
+export default LocationList;

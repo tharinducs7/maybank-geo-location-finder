@@ -13,10 +13,12 @@ const theme = createTheme();
 const APP = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
+
   const dispatch = useDispatch();
+
   const { location } = useSelector((state) => state);
   const { locationData } = location;
-  console.log(location.locationData, "llll");
+
   const handlePlaceSelect = () => {
     if (autocomplete) {
       const place = autocomplete.getPlace();
@@ -41,6 +43,10 @@ const APP = () => {
     setAutocomplete(autocomplete);
   };
 
+  const previousLocation = (location) => {
+    setSelectedPlace(location);
+  }
+
   // const featchOnLoad = async () => {
 
   //   dispatch(addLocationStart());
@@ -60,7 +66,7 @@ const APP = () => {
       >
         <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
-          <SearchHistory historyData={locationData}/>
+          <SearchHistory historyData={locationData} previousLocation={previousLocation}/>
           <MapComponent
             selectedPlace={selectedPlace}
             handlePlaceSelect={handlePlaceSelect}
