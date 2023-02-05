@@ -6,7 +6,11 @@ First you need to install node modules by running:
 
 ### `yarn`
 
+### `GOOGLE_MAPS_API_KEY`
+
 You need to have GOOGLE_MAPS_API_KEY inorder to run this application. 
+
+### `.env`
 
 I have added .example.env file
 Rename it to .env and replace your google api key.
